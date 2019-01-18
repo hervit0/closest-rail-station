@@ -10,6 +10,11 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 
 ## Notes
 
+### Configure AWS via command line
+
+- `aws configure`
+- [help](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+
 ### Integrate API Gateway with Lambda
 
 - [AWS doc](https://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example.html)
