@@ -56,13 +56,16 @@ package:
 functions:
   closestStation:
     handler: closestRailStation.ClosestRailStationLambda::handle
-#    handler: api/candidate.submit
     memorySize: 128
     description: Give back the closest station given a lat and a long
     events:
       - http:
           path: position
           method: get
+          request:
+            parameters:
+              querystrings:
+                position: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

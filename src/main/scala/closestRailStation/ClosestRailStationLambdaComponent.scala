@@ -7,7 +7,9 @@ import io.github.mkotsur.aws.handler.Lambda
 trait ClosestRailStationLambdaComponent
   extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse] {
 
-  override def handle(request: ClosestRailStationLambdaRequest, context: Context) =
-    Right(ClosestRailStationLambdaResponse(request.inputMsg.reverse))
+  override def handle(request: ClosestRailStationLambdaRequest, context: Context): Either[Throwable, ClosestRailStationLambdaResponse] = {
+    val closestRailStation = request.queryStringParameters.position.reverse
+    Right(ClosestRailStationLambdaResponse.ok(isBase64Encoded = true, None, closestRailStation))
+  }
 
 }
