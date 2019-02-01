@@ -1,1 +1,0 @@
-{"errorMessage":"Cannot find module '/var/task/index'","errorType":"Error","stackTrace":["Function.Module._load (module.js:474:25)","Module.require (module.js:596:17)","require (internal/module.js:11:18)"]}

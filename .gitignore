@@ -14,3 +14,6 @@ project/plugins/project/
 
 # Serverless directories
 .serverless
+outputfile.txt
+
+.idea/

@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws-scala-sbt # NOTE: update this with your service name
+service: closestRailStation # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,6 +20,8 @@ service: aws-scala-sbt # NOTE: update this with your service name
 provider:
   name: aws
   runtime: java8
+  stage: dev
+  region: us-east-1
 
 # you can overwrite defaults here
 #  stage: dev
@@ -52,8 +54,15 @@ package:
   artifact: target/scala-2.12/hello.jar
 
 functions:
-  hello:
-    handler: hello.Handler
+  closestStation:
+    handler: closestRailStation.ClosestRailStationLambda::handle
+#    handler: api/candidate.submit
+    memorySize: 128
+    description: Give back the closest station given a lat and a long
+    events:
+      - http:
+          path: position
+          method: get
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
