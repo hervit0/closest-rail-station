@@ -2,6 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/sample-config/ for more details
 #
+
 version: 2
 jobs:
   build:
@@ -25,6 +26,7 @@ jobs:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
+      CODECOV_TOKEN: 13710bed-2a74-4db2-b00b-e496d7967926
 
     steps:
       - checkout
@@ -50,3 +52,9 @@ jobs:
       - run:
           name: "Run linter"
           command: sbt scalafmtCheck
+
+      - run:
+          name: "Run coverage report"
+          command: |
+            sbt clean coverage test coverageReport
+            bash <(curl -s https://codecov.io/bash)

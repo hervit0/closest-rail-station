@@ -1,5 +1,9 @@
 # Closest Rail Station
 
+[![CircleCI](https://circleci.com/gh/hervit0/closest-rail-station.svg?style=svg)](https://circleci.com/gh/hervit0/closest-rail-station)
+[![codecov](https://codecov.io/gh/hervit0/closest-rail-station/branch/master/graph/badge.svg)](https://codecov.io/gh/hervit0/closest-rail-station)
+
+
 ## Overview
 
 This is a learning project in progress.
@@ -45,3 +49,7 @@ It's assuming you have correct creds on your local machine
 ### `aws-lambda-scala` troubleshooting
 
 - `import io.github.mkotsur.aws.handler.Lambda._` is mandatory in the tests to satisfy the compiler
+
+### How to embed `scalafmt` into CI
+
+- [This article](https://medium.com/zyseme-technology/code-formatting-scalafmt-and-the-git-pre-commit-hook-3de71d099514)
