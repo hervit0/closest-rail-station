@@ -43,5 +43,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies--{{ checksum "build.sbt" }}
 
-      # run tests!
-      - run: cat /dev/null | sbt test:test
+      - run:
+          name: "Run unit tests"
+          command: cat /dev/null | sbt test:test
+
+      - run:
+          name: "Run linter"
+          command: sbt scalafmtCheck
