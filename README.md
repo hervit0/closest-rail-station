@@ -41,3 +41,7 @@ It's assuming you have correct creds on your local machine
 - `serverless create --template aws-scala-sbt` from this [article](https://medium.com/@mkotsur/this-is-why-you-should-consider-using-aws-lambda-scala-6b3ea841f8b0)
 - [Serverless Quick Start](https://serverless.com/framework/docs/providers/aws/guide/quick-start/)
 - [Using serverless to create Basic Auth within API Gateway](https://medium.com/@Da_vidgf/http-basic-auth-with-api-gateway-and-serverless-5ae14ad0a270)
+
+### `aws-lambda-scala` troubleshooting
+
+- `import io.github.mkotsur.aws.handler.Lambda._` is mandatory in the tests to satisfy the compiler
