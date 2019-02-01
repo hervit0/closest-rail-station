@@ -3,7 +3,7 @@ package closestRailStation.model
 import io.circe.generic.semiauto.{deriveDecoder, deriveEncoder}
 import io.circe.{Decoder, Encoder}
 
-//https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/
+// https://aws.amazon.com/premiumsupport/knowledge-center/malformed-502-api-gateway/
 case class ClosestRailStationLambdaResponse(isBase64Encoded: Boolean, statusCode: Int, headers: Option[Map[String, String]], body: String)
 
 object ClosestRailStationLambdaResponse {
