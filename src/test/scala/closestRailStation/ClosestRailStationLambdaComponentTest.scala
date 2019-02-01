@@ -1,16 +1,18 @@
 package closestRailStation
 
-import closestRailStation.model.{ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse, QueryStringParameters}
+import closestRailStation.model.{
+  ClosestRailStationLambdaRequest,
+  ClosestRailStationLambdaResponse,
+  QueryStringParameters
+}
 import io.github.mkotsur.aws.handler.Lambda
 import io.github.mkotsur.aws.handler.Lambda._
 import org.scalatest.{EitherValues, WordSpec}
 
-class ClosestRailStationLambdaComponentTest
-  extends WordSpec
-    with EitherValues {
+class ClosestRailStationLambdaComponentTest extends WordSpec with EitherValues {
 
   class Subject
-    extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse]
+      extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse]
       with ClosestRailStationLambdaComponent {}
 
   private val context = ClosestRailStationFixtures.amazonContext

@@ -17,10 +17,10 @@ artifactName := { (_, _, _) =>
 }
 
 libraryDependencies ++= Seq(
-  "com.amazonaws"     % "aws-lambda-java-events" % "2.2.1",
-  "com.amazonaws"     % "aws-lambda-java-core"   % "1.2.0",
-  "io.github.mkotsur" %% "aws-lambda-scala"      % "0.1.1",
-  "org.scalatest"     % "scalatest_2.12"         % "3.0.5" % "test"
+  "com.amazonaws" % "aws-lambda-java-events" % "2.2.1",
+  "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
+  "io.github.mkotsur" %% "aws-lambda-scala" % "0.1.1",
+  "org.scalatest" % "scalatest_2.12" % "3.0.5" % "test"
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings")
