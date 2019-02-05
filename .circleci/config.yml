@@ -44,8 +44,6 @@ jobs:
             sbt assembly
             cp target/scala-2.12/hello.jar ./packagingWorkspace/hello.jar
             cp serverless.yml ./packagingWorkspace/serverless.yml
-            pwd
-            ls -la packagingWorkspace
       - store_artifacts:
           path: target/scala-2.12/hello.jar
       - persist_to_workspace:
@@ -65,10 +63,7 @@ jobs:
       - run:
           name: "Deploy the application"
           command: |
-            ls -la ./packagingWorkspace
             cp ./packagingWorkspace/* .
-            pwd
-            ls -la
             export AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
             export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
             serverless deploy

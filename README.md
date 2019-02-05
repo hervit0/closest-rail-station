@@ -16,13 +16,7 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 
 - app: Investigation in progress
 - tests: `sbt test`
-
-## Deploy from local machine
-
-(To be deprecated once CI is enabled)
-
-It's assuming you have correct creds on your local machine
-- `./scripts/serverlessDeploy.sh`
+- compile and lint: `sbt compile`
 
 ## Notes
 

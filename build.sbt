@@ -24,3 +24,23 @@ libraryDependencies ++= Seq(
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warnings")
+
+//http://www.wartremover.org/doc/install-setup.html
+//wartremoverErrors ++= Warts.unsafe
+wartremoverErrors in(Compile, compile) ++= Warts.allBut(
+  Wart.Option2Iterable,
+  Wart.DefaultArguments,
+  Wart.Throw,
+  Wart.Overloading,
+  Wart.FinalCaseClass,
+  Wart.Nothing,
+  Wart.Product,
+  Wart.Equals,
+  Wart.Serializable,
+  Wart.NonUnitStatements,
+  Wart.JavaSerializable,
+  Wart.ImplicitParameter
+)
+
+addCompilerPlugin("org.wartremover" %% "wartremover" % "2.4.1")
+//scalacOptions += "-P:wartremover:traverser:org.wartremover.warts.Unsafe"
