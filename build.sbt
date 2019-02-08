@@ -20,6 +20,11 @@ libraryDependencies ++= Seq(
   "com.amazonaws" % "aws-lambda-java-events" % "2.2.1",
   "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
   "io.github.mkotsur" %% "aws-lambda-scala" % "0.1.1",
+  "com.nrinaudo" %% "kantan.csv" % "0.5.0",
+  "com.nrinaudo" %% "kantan.csv-generic" % "0.5.0",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
+  "org.apache.logging.log4j" % "log4j-core" % "2.11.1",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
   "org.scalatest" % "scalatest_2.12" % "3.0.5" % "test"
 )
 
@@ -27,7 +32,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
 
 //http://www.wartremover.org/doc/install-setup.html
 //wartremoverErrors ++= Warts.unsafe
-wartremoverErrors in(Compile, compile) ++= Warts.allBut(
+wartremoverErrors in (Compile, compile) ++= Warts.allBut(
   Wart.Option2Iterable,
   Wart.DefaultArguments,
   Wart.Throw,

@@ -49,6 +49,9 @@ jobs:
       - persist_to_workspace:
           root: packagingWorkspace
           paths: .
+      - run:
+          name: "Seed Database"
+          command: sbt run
   deployJob:
     docker:
       - image: circleci/node:8.10

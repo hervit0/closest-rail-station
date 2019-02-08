@@ -47,3 +47,7 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 ### How to embed `scalafmt` into CI
 
 - [This article](https://medium.com/zyseme-technology/code-formatting-scalafmt-and-the-git-pre-commit-hook-3de71d099514)
+
+### Kantan CSV library
+
+- [could not find implicit value for evidence parameter of type kantan.csv.HeaderDecoder[closestRailStation.dataParsing.models.RailStation]](https://github.com/nrinaudo/kantan.csv/issues/41) (:roll_eyes:... [the explanation](https://nrinaudo.github.io/kantan.csv/headers.html))
