@@ -1,10 +1,10 @@
 package closestRailStation.dataParsing.decoders
 
-import closestRailStation.dataParsing.models.RailStation
+import closestRailStation.dataParsing.models.RawRailStation
 import kantan.csv.HeaderDecoder
 
 trait RailStationDecoder {
-  implicit val railStationDecoder: HeaderDecoder[RailStation] =
+  implicit val railStationDecoder: HeaderDecoder[RawRailStation] =
     HeaderDecoder.decoder(
       "AtcoCode",
       "TiplocCode",
@@ -18,5 +18,5 @@ trait RailStationDecoder {
       "ModificationDateTime",
       "RevisionNumber",
       "Modification"
-    )(RailStation.apply)
+    )(RawRailStation.apply)
 }

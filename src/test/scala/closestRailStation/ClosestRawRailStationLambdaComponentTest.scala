@@ -9,7 +9,7 @@ import io.github.mkotsur.aws.handler.Lambda
 import io.github.mkotsur.aws.handler.Lambda._
 import org.scalatest.{EitherValues, WordSpec}
 
-class ClosestRailStationLambdaComponentTest extends WordSpec with EitherValues {
+class ClosestRawRailStationLambdaComponentTest extends WordSpec with EitherValues {
 
   class Subject
       extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse]
