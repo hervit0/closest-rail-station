@@ -35,6 +35,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
 wartremoverErrors in (Compile, compile) ++= Warts.allBut(
   Wart.Option2Iterable,
   Wart.DefaultArguments,
+  Wart.EitherProjectionPartial,
   Wart.Throw,
   Wart.Overloading,
   Wart.FinalCaseClass,
