@@ -1,5 +1,4 @@
 require 'csv'
-# require 'rb-readline'
 require 'pry'
 
 # If launch from root
@@ -24,6 +23,3 @@ CSV.open("src/main/resources/RailReferences.csv", "wb") do |csv|
     csv << line
   end
 end
-
-binding.pry
-
