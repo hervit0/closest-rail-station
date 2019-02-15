@@ -6,6 +6,7 @@ name := "closestRailStation"
 
 organization in ThisBuild := "com.hervito"
 scalaVersion in ThisBuild := "2.12.6"
+val scanamoVersion = "1.0.0-M8"
 
 resolvers += Resolver.sonatypeRepo("public")
 releaseNextVersion := { ver =>
@@ -22,6 +23,9 @@ libraryDependencies ++= Seq(
   "io.github.mkotsur" %% "aws-lambda-scala" % "0.1.1",
   "com.nrinaudo" %% "kantan.csv" % "0.5.0",
   "com.nrinaudo" %% "kantan.csv-generic" % "0.5.0",
+  "com.gu" %% "scanamo" % scanamoVersion,
+//  "com.gu" %% "scanamo-testkit" % scanamoVersion % Test,
+  "com.gu" %% "scanamo-testkit" % scanamoVersion,
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
   "org.apache.logging.log4j" % "log4j-core" % "2.11.1",
   "ch.qos.logback" % "logback-classic" % "1.2.3",

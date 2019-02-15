@@ -51,3 +51,8 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 ### Kantan CSV library
 
 - [could not find implicit value for evidence parameter of type kantan.csv.HeaderDecoder[closestRailStation.dataParsing.models.RailStation]](https://github.com/nrinaudo/kantan.csv/issues/41) (:roll_eyes:... [the explanation](https://nrinaudo.github.io/kantan.csv/headers.html))
+
+### Tentative for DynamoDB local instance
+
+- [Local instance](https://stackoverflow.com/questions/54665643/local-dynamodb-unable-to-execute-http-request-connection-refused)
+- [Circle CI with App/DB dockers](https://circleci.com/docs/2.0/postgres-config/)
