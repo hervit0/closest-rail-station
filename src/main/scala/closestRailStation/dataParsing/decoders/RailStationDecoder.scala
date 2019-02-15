@@ -17,6 +17,8 @@ trait RailStationDecoder {
       "CreationDateTime",
       "ModificationDateTime",
       "RevisionNumber",
-      "Modification"
+      "Modification",
+      "Latitude",
+      "Longitude"
     )(RawRailStation.apply)
 }

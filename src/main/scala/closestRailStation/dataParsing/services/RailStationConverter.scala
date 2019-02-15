@@ -7,8 +7,8 @@ class RailStationConverter {
     RailStation(
       id = rawRailStation.atcoCode,
       stationName = rawRailStation.stationName,
-      latitude = rawRailStation.northing.toFloat,
-      longitude = rawRailStation.easting.toFloat
+      latitude = rawRailStation.latitude,
+      longitude = rawRailStation.longitude
     )
   }
 }
