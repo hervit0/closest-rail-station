@@ -11,8 +11,8 @@ package closestRailStation.dataParsing.services
 //British National Grid (BNG)
 //Easting: 147598
 //Northing: 30640
-class CoordinatesConverter {
 
+class CoordinatesConverter {
 //  private val crs = ReferencingFactoryFinder.getCRSAuthorityFactory("EPSG", null)
 //  private val egs84crs = crs.createCoordinateReferenceSystem("4326")
 //  private val osbgr = crs.createCoordinateReferenceSystem("27700")
