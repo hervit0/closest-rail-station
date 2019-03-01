@@ -16,6 +16,6 @@ class RailStationData {
   private val railStationTable = Table[RailStation]("station")
 
   def saveAll(railStations: List[RailStation]): Option[Either[DynamoReadError, RailStation]] = {
-    Scanamo.exec(client)(railStationTable.put(railStations.head))
+    Scanamo.exec(client)(railStationTable.put(railStations(0)))
   }
 }
