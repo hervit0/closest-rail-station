@@ -17,7 +17,7 @@ class RailStationDataTest extends WordSpec {
   )
 
   private val client = {
-    val conf = new EndpointConfiguration("http://127.0.0.1:8000", "us-east-1")
+    val conf = new EndpointConfiguration("http://127.0.0.1:8000", "us-west-2")
     AmazonDynamoDBClientBuilder.standard().withEndpointConfiguration(conf).build()
   }
 
