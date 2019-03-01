@@ -8,6 +8,7 @@ jobs:
   buildJob:
     docker:
       - image: circleci/openjdk:8-jdk
+      - image: circleci/dynamodb
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -24,6 +25,9 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies--{{ checksum "build.sbt" }}
+      - run:
+          name: "Wait for test dynamoDB starting"
+          command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120
       - run:
           name: "Run unit tests"
           command: cat /dev/null | sbt test:test

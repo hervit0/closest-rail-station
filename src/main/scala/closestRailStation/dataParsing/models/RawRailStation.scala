@@ -14,5 +14,5 @@ final case class RawRailStation(atcoCode: String,
                                 modificationDateTime: String,
                                 revisionNumber: Int,
                                 modification: String,
-                                latitude: Float,
-                                longitude: Float) {}
+                                latitude: Double,
+                                longitude: Double) {}

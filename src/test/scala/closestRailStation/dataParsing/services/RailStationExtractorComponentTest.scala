@@ -27,8 +27,8 @@ class RailStationExtractorComponentTest extends WordSpec {
           "2011-09-30T14:47:28",
           2,
           "rev",
-          50.1216622978F,
-          -5.5326194274F
+          50.1216622978D,
+          -5.5326194274D
         )
 
         assert(response.length === 2628)

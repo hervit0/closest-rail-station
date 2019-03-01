@@ -1,3 +1,3 @@
 package closestRailStation.dataParsing.models
 
-case class RailStation(id: String, stationName: String, latitude: Float, longitude: Float) {}
+case class RailStation(id: String, stationName: String, latitude: Long, longitude: Long) {}
