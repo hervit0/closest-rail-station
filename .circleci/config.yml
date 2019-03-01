@@ -16,6 +16,9 @@ jobs:
       CODECOV_TOKEN: 13710bed-2a74-4db2-b00b-e496d7967926
     steps:
       - checkout
+      - run:
+          name: "Wait for test dynamoDB starting"
+          command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120s
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "build.sbt" }}
@@ -25,9 +28,6 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies--{{ checksum "build.sbt" }}
-      - run:
-          name: "Wait for test dynamoDB starting"
-          command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120
       - run:
           name: "Run unit tests"
           command: cat /dev/null | sbt test:test
