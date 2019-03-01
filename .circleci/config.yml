@@ -10,10 +10,10 @@ jobs:
       - image: circleci/openjdk:8-jdk
       - image: circleci/dynamodb
         command: [-sharedDb]
-        aws_auth:
-          aws_access_key_id: test_id
-          aws_secret_access_key: test_key
-          aws_default_region: us-west-2
+        environment:
+          AWS_ACCESS_KEY_ID: test_id
+          AWS_SECRET_ACCESS_KEY: test_key
+          AWS_DEFAULT_REGION: us-west-2
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
