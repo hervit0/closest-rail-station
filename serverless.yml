@@ -131,6 +131,7 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
+#https://stackoverflow.com/questions/41915749/propertydefinition-inconsistent/41922165:
 resources:
   Resources:
     stationsTable:
@@ -141,14 +142,6 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: stationName
-            AttributeType: S
-          - AttributeName: latitude
-            AttributeType: S
-          - AttributeName: longitude
-            AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-          - AttributeName: stationName
-            KeyType: RANGE

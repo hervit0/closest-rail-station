@@ -39,18 +39,15 @@ jobs:
             - project/target/streams
           key: v1-dependencies-{{ arch }}-{{ checksum "build.sbt" }}
       - run:
-          name: "Run unit tests"
-          command: cat /dev/null | sbt test:test
-      - store_test_results:
-          path: target/testReports
-      - run:
           name: "Run linter"
           command: sbt scalafmtCheck
       - run:
-          name: "Run coverage report"
+          name: "Run unit tests and send coverage"
           command: |
             sbt clean coverage test coverageReport
             bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: target/testReports
       - run:
           name: "Package the application"
           command: |
