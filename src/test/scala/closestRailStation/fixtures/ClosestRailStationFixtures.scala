@@ -1,5 +1,4 @@
-package closestRailStation
-
+package closestRailStation.fixtures
 import com.amazonaws.services.lambda.runtime.{ClientContext, CognitoIdentity, Context, LambdaLogger}
 
 object ClosestRailStationFixtures {

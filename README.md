@@ -15,7 +15,12 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 ## Run locally
 
 - app: Investigation in progress
-- tests: `sbt test`
+- tests: 
+```bash
+./startDynamo.sh
+sbt test
+./stopDynamo.sh
+```
 - compile and lint: `sbt compile`
 
 ## Notes
@@ -56,3 +61,8 @@ The tasks can be found here: [trello board](https://trello.com/b/KLKXcGcC)
 
 - [Local instance](https://stackoverflow.com/questions/54665643/local-dynamodb-unable-to-execute-http-request-connection-refused)
 - [Circle CI with App/DB dockers](https://circleci.com/docs/2.0/postgres-config/)
+
+### Scanamo complaints
+
+- when doing `Scanamo.exec(dynamoDBClient)(railStationTable.get('id -> name))`
+- `import com.gu.scanamo.syntax._`

@@ -1,10 +1,7 @@
 package closestRailStation
 
-import closestRailStation.model.{
-  ClosestRailStationLambdaRequest,
-  ClosestRailStationLambdaResponse,
-  QueryStringParameters
-}
+import closestRailStation.fixtures.ClosestRailStationFixtures
+import closestRailStation.model.{ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse, QueryStringParameters}
 import io.github.mkotsur.aws.handler.Lambda
 import io.github.mkotsur.aws.handler.Lambda._
 import org.scalatest.{EitherValues, WordSpec}
