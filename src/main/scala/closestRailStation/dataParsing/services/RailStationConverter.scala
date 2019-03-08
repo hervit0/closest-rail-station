@@ -4,7 +4,7 @@ import closestRailStation.dataParsing.models.{RailStation, RawRailStation}
 
 // Float is not enough => Double
 // Int is not enough => Long
-class RailStationConverter {
+object RailStationConverter {
   def toRailStation(rawRailStation: RawRailStation): RailStation = {
     RailStation(
       id = rawRailStation.atcoCode,
