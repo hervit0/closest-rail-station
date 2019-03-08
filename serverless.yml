@@ -21,7 +21,7 @@ provider:
   name: aws
   runtime: java8
   stage: dev
-  region: eu-west-2
+  region: us-east-1
   tracing: true
 
 # you can overwrite defaults here
