@@ -42,6 +42,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xfatal-warning
 //http://www.wartremover.org/doc/install-setup.html
 //wartremoverErrors ++= Warts.unsafe
 wartremoverErrors in (Compile, compile) ++= Warts.allBut(
+  Wart.ToString,
   Wart.Option2Iterable,
   Wart.DefaultArguments,
   Wart.EitherProjectionPartial,
