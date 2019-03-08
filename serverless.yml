@@ -150,3 +150,10 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+          - AttributeName: stationName
+            KeyType: RANGE
+          - AttributeName: latitude
+            KeyType: RANGE
+          - AttributeName: longitude
+            KeyType: RANGE
+
