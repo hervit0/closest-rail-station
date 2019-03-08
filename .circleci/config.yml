@@ -25,13 +25,19 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120s
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}
+            - v1-dependencies-{{ arch }}-{{ checksum "build.sbt" }}
             - v1-dependencies-
       - run: cat /dev/null | sbt test:compile
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies--{{ checksum "build.sbt" }}
+            - ~/.ivy2/cache
+            - ~/.sbt
+            - target/resolution-cache
+            - target/streams
+            - project/target/resolution-cache
+            - project/target/streams
+          key: v1-dependencies-{{ arch }}-{{ checksum "build.sbt" }}
       - run:
           name: "Run unit tests"
           command: cat /dev/null | sbt test:test

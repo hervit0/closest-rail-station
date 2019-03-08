@@ -1,19 +1,18 @@
 package closestRailStation.dataParsing
 
 import closestRailStation.dataParsing.services.RailStationExtractorImplementationComponent
-import com.typesafe.scalalogging.LazyLogging
+import closestRailStation.logging.ClosestRailStationLogging
 
-object SeedDatabaseTask extends App with RailStationExtractorImplementationComponent with LazyLogging {
+object SeedDatabaseTask extends App with RailStationExtractorImplementationComponent {
   val railStationExtractor = new RailStationExtractorImplementation
 
-  private def call: Unit = {
-    logger.info("Start: Parsing Rail Station data from CSV")
+  private def call(): Unit = {
+    val startTime = ClosestRailStationLogging.startSeedDatabase
 
     railStationExtractor.extract
 
-    logger.info("Done: Parsing Rail Station data from CSV")
-    println("Done")
+    ClosestRailStationLogging.finishSeedDatabase(startTime)
   }
 
-  call
+  call()
 }
