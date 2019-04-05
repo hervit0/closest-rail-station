@@ -22,6 +22,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
   override def beforeEach: Unit = {
     try {
       LocalDynamoDB.createTable(dynamoDBClient)("station")('id -> S)
+      println("[RailStationExtractorComponentTest] createTable is success")
     } catch {
       case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try createTable")
       case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try createTable")
@@ -31,6 +32,8 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
   override def afterEach: Unit = {
     try {
       LocalDynamoDB.deleteTable(dynamoDBClient)("station")
+      Thread.sleep(1000)
+      println("[RailStationExtractorComponentTest] deleteTable is success")
     } catch {
       case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try deleteTable")
       case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try deleteTable")
