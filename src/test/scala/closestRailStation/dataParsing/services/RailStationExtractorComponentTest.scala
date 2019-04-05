@@ -23,8 +23,8 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
     try {
       LocalDynamoDB.createTable(dynamoDBClient)("station")('id -> S)
     } catch {
-      case e: ResourceInUseException    => println("resource in use")
-      case e: ResourceNotFoundException => println("resource not found")
+      case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try createTable")
+      case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try createTable")
     }
   }
 
@@ -32,8 +32,8 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
     try {
       LocalDynamoDB.deleteTable(dynamoDBClient)("station")
     } catch {
-      case e: ResourceInUseException    => println("resource in use")
-      case e: ResourceNotFoundException => println("resource not found")
+      case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try deleteTable")
+      case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try deleteTable")
     }
   }
 
