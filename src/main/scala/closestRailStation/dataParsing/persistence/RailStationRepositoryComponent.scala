@@ -22,8 +22,10 @@ trait DynamoRailStationRepositoryComponent extends RailStationRepositoryComponen
   class DynamoRailStationRepository extends RailStationRepository {
     private val railStationTable = Table[RailStation]("station")
 
+//    @SuppressWarnings(Array("org.wartremover.warts.TraversableOps"))
     override def save(railStations: Set[RailStation]): Either[RepositoryException, String] = {
       try {
+        println(s"About to save ${railStations.size} stations")
         Scanamo.exec(dynamoDB) {
           railStationTable.putAll(railStations)
         }

@@ -38,7 +38,9 @@ trait RailStationExtractorImplementationComponent extends RailStationExtractorCo
         .map(RailStationConverter.toRailStation)
         .toSet
 
-      railStationRepository.save(railStationsSet)
+      val savingOperation = railStationRepository.save(railStationsSet)
+      println(savingOperation)
+      savingOperation
     }
 
   }

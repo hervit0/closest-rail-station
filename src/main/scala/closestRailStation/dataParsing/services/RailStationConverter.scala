@@ -6,7 +6,6 @@ import closestRailStation.dataParsing.models.{RailStation, RawRailStation}
 // Int is not enough => Long
 object RailStationConverter {
   def toRailStation(rawRailStation: RawRailStation): RailStation = {
-    println(rawRailStation)
     RailStation(
       id = rawRailStation.atcoCode,
       stationName = rawRailStation.stationName,
