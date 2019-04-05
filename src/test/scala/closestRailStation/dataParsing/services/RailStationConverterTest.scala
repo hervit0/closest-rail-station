@@ -1,10 +1,13 @@
 package closestRailStation.dataParsing.services
+
 import closestRailStation.dataParsing.models.{RailStation, RawRailStation}
 import org.scalatest.WordSpec
 
 class RailStationConverterTest extends WordSpec {
 
-  class Subject extends RailStationConverter {}
+  class Subject  {
+    val railStationConverter: RailStationConverter.type = RailStationConverter
+  }
 
   "RailStationConverter" should {
     "toRailStation(RawRailStation)" should {
@@ -33,7 +36,7 @@ class RailStationConverterTest extends WordSpec {
           longitude = -55326194274L
         )
 
-        assert(this.toRailStation(rawRailStation) === expectedRailStation)
+        assert(railStationConverter.toRailStation(rawRailStation) === expectedRailStation)
       }
     }
   }
