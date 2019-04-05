@@ -6,6 +6,7 @@ import closestRailStation.dataParsing.persistence.DynamoRailStationRepositoryCom
 import closestRailStation.fixtures.Fixtures
 import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType._
+import com.amazonaws.services.dynamodbv2.model.{ResourceInUseException, ResourceNotFoundException}
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
 import com.gu.scanamo.syntax._
 import com.gu.scanamo.{LocalDynamoDB, Scanamo, Table}
@@ -19,11 +20,21 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
   }
 
   override def beforeEach: Unit = {
-    LocalDynamoDB.createTable(dynamoDBClient)("station")('id -> S)
+    try {
+      LocalDynamoDB.createTable(dynamoDBClient)("station")('id -> S)
+    } catch {
+      case e: ResourceInUseException    => println("resource in use")
+      case e: ResourceNotFoundException => println("resource not found")
+    }
   }
 
   override def afterEach: Unit = {
-    LocalDynamoDB.deleteTable(dynamoDBClient)("station")
+    try {
+      LocalDynamoDB.deleteTable(dynamoDBClient)("station")
+    } catch {
+      case e: ResourceInUseException    => println("resource in use")
+      case e: ResourceNotFoundException => println("resource not found")
+    }
   }
 
   private val railStations = Set(Fixtures.railStation)
