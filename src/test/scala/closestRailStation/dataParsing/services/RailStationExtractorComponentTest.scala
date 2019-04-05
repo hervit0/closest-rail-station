@@ -1,5 +1,6 @@
 package closestRailStation.dataParsing.services
 
+import closestRailStation.ConfigProvider
 import closestRailStation.dataParsing.models.RailStation
 import closestRailStation.dataParsing.persistence.DynamoRailStationRepositoryComponent
 import closestRailStation.fixtures.Fixtures
@@ -8,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType._
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
 import com.gu.scanamo.syntax._
 import com.gu.scanamo.{LocalDynamoDB, Scanamo, Table}
+import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.{BeforeAndAfterEach, WordSpec}
 
 class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach {
@@ -32,12 +34,17 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
       case _                                 => Left("No station")
     }
 
-  private trait Resource extends RailStationExtractorImplementationComponent with DynamoRailStationRepositoryComponent {
+  private trait Resource
+      extends RailStationExtractorImplementationComponent
+      with DynamoRailStationRepositoryComponent
+      with ConfigProvider {
     val railStationRepository: RailStationRepository = new DynamoRailStationRepository
 
     val dynamoDB: AmazonDynamoDB = dynamoDBClient
 
     val railStationExtractor: RailStationExtractor = new RailStationExtractorImplementation()
+
+    val config: Config = ConfigFactory.load()
   }
 
   "RailStationExtractorComponent" should {

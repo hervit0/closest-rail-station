@@ -33,6 +33,8 @@ libraryDependencies ++= Seq(
   "org.apache.logging.log4j" % "log4j-core" % "2.11.1",
   "ch.qos.logback" % "logback-classic" % "1.2.3",
 
+  "com.typesafe" % "config" % "1.3.3",
+
   "org.scalatest" % "scalatest_2.12" % "3.0.5" % Test,
   "org.mockito" % "mockito-all" % "1.10.19" % Test
 )

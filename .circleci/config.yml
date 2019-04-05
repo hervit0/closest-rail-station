@@ -62,6 +62,8 @@ jobs:
           paths: .
       - run:
           name: "Seed Database"
+          environment:
+            STAGE: "prod"
           command: sbt run
   deployJob:
     docker:
