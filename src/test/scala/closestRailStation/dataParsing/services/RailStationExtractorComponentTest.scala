@@ -21,7 +21,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
 
   override def beforeEach: Unit = {
     try {
-      LocalDynamoDB.createTable(dynamoDBClient)("station")('id -> S)
+      LocalDynamoDB.createTable(dynamoDBClient)("stations")('id -> S)
       println("[RailStationExtractorComponentTest] createTable is success")
     } catch {
       case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try createTable")
@@ -31,7 +31,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
 
   override def afterEach: Unit = {
     try {
-      LocalDynamoDB.deleteTable(dynamoDBClient)("station")
+      LocalDynamoDB.deleteTable(dynamoDBClient)("stations")
       Thread.sleep(1000)
       println("[RailStationExtractorComponentTest] deleteTable is success")
     } catch {
@@ -41,7 +41,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
   }
 
   private val railStations = Set(Fixtures.railStation)
-  private val railStationTable = Table[RailStation]("station")
+  private val railStationTable = Table[RailStation]("stations")
   private def stationByName(name: String): Either[String, RailStation] =
     Scanamo.exec(dynamoDBClient)(railStationTable.get('id -> name)) match {
       case Some(Right(station: RailStation)) => Right(station)

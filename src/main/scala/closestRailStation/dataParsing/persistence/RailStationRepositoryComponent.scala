@@ -20,7 +20,7 @@ trait DynamoRailStationRepositoryComponent extends RailStationRepositoryComponen
   val dynamoDB: AmazonDynamoDB
 
   class DynamoRailStationRepository extends RailStationRepository {
-    private val railStationTable = Table[RailStation]("station")
+    private val railStationTable = Table[RailStation]("stations")
 
 //    @SuppressWarnings(Array("org.wartremover.warts.TraversableOps"))
     override def save(railStations: Set[RailStation]): Either[RepositoryException, String] = {
