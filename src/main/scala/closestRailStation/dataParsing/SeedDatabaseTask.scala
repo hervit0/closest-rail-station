@@ -2,7 +2,10 @@ package closestRailStation.dataParsing
 
 import closestRailStation.ConfigProvider
 import closestRailStation.dataParsing.persistence.DynamoRailStationRepositoryComponent
-import closestRailStation.dataParsing.services.RailStationExtractorImplementationComponent
+import closestRailStation.dataParsing.services.{
+  RailStationExtractorImplementationComponent,
+  RailStationLoaderImplementationComponent
+}
 import closestRailStation.logging.ClosestRailStationLogging
 import com.amazonaws.ClientConfiguration
 import com.amazonaws.regions.Regions
@@ -14,6 +17,7 @@ object SeedDatabaseTask
     extends App
     with DynamoRailStationRepositoryComponent
     with RailStationExtractorImplementationComponent
+    with RailStationLoaderImplementationComponent
     with ConfigProvider {
 
 //  US East (N. Virginia)	us-east-1
@@ -33,12 +37,14 @@ object SeedDatabaseTask
 
   val railStationExtractor: RailStationExtractor = new RailStationExtractorImplementation
 
+  val railStationLoader: RailStationLoader = new RailStationLoaderImplementation
+
   val config: Config = ConfigFactory.load()
 
   private def call(): Unit = {
     val startTime = ClosestRailStationLogging.startSeedDatabase
 
-    railStationExtractor.extract
+    railStationLoader.load
 
     ClosestRailStationLogging.finishSeedDatabase(startTime)
   }

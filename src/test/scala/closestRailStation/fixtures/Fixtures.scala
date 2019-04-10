@@ -5,7 +5,7 @@ object Fixtures {
   val railStation = RailStation(
     id = "9100PENZNCE",
     stationName = "Penzance Rail Station",
-    latitude = 501216622978L,
-    longitude = -55326194274L
+    latitude = 50.1216622978D,
+    longitude = -5.5326194274D
   )
 }

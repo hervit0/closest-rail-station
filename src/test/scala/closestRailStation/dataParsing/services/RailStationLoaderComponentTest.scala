@@ -13,7 +13,7 @@ import com.gu.scanamo.{LocalDynamoDB, Scanamo, Table}
 import com.typesafe.config.{Config, ConfigFactory}
 import org.scalatest.{BeforeAndAfterEach, WordSpec}
 
-class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach {
+class RailStationLoaderComponentTest extends WordSpec with BeforeAndAfterEach {
   private val dynamoDBClient: AmazonDynamoDB = {
     val configuration = new EndpointConfiguration("http://127.0.0.1:8000", "us-west-2")
     AmazonDynamoDBClientBuilder.standard().withEndpointConfiguration(configuration).build()
@@ -24,8 +24,10 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
       LocalDynamoDB.createTable(dynamoDBClient)("stations")('id -> S)
       println("[RailStationExtractorComponentTest] createTable is success")
     } catch {
-      case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try createTable")
-      case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try createTable")
+      case e: ResourceInUseException =>
+        println("[RailStationExtractorComponentTest] resource in use while try createTable")
+      case e: ResourceNotFoundException =>
+        println("[RailStationExtractorComponentTest] resource not found while try createTable")
     }
   }
 
@@ -35,8 +37,10 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
       Thread.sleep(1000)
       println("[RailStationExtractorComponentTest] deleteTable is success")
     } catch {
-      case e: ResourceInUseException    => println("[RailStationExtractorComponentTest] resource in use while try deleteTable")
-      case e: ResourceNotFoundException => println("[RailStationExtractorComponentTest] resource not found while try deleteTable")
+      case e: ResourceInUseException =>
+        println("[RailStationExtractorComponentTest] resource in use while try deleteTable")
+      case e: ResourceNotFoundException =>
+        println("[RailStationExtractorComponentTest] resource not found while try deleteTable")
     }
   }
 
@@ -49,23 +53,26 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
     }
 
   private trait Resource
-      extends RailStationExtractorImplementationComponent
+      extends RailStationLoaderImplementationComponent
+      with RailStationExtractorImplementationComponent
       with DynamoRailStationRepositoryComponent
       with ConfigProvider {
     val railStationRepository: RailStationRepository = new DynamoRailStationRepository
 
     val dynamoDB: AmazonDynamoDB = dynamoDBClient
 
-    val railStationExtractor: RailStationExtractor = new RailStationExtractorImplementation()
+    val railStationExtractor: RailStationExtractor = new RailStationExtractorImplementation
+
+    val railStationLoader: RailStationLoader = new RailStationLoaderImplementation
 
     val config: Config = ConfigFactory.load()
   }
 
-  "RailStationExtractorComponent" should {
-    "extract" should {
+  "RailStationLoaderComponent" should {
+    "load" should {
       "pass down the response from the repository" in new Resource {
         // When
-        val result = railStationExtractor.extract
+        val result = railStationLoader.load
 
         // Then
         assert(result === Right("saved!"))
@@ -73,7 +80,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
 
       "save the station data" in new Resource {
         // When
-        val result = railStationExtractor.extract
+        val result = railStationLoader.load
 
         // Then
         val expectedSavedStation = stationByName("9100PENZNCE")
@@ -82,7 +89,7 @@ class RailStationExtractorComponentTest extends WordSpec with BeforeAndAfterEach
 
       "not return a station which is not part of the set" in new Resource {
         // When
-        val result = railStationExtractor.extract
+        val result = railStationLoader.load
 
         // Then
         val stationNotSaved = stationByName("STATION NOT IN THE SET")

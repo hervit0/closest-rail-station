@@ -5,7 +5,7 @@ import org.scalatest.WordSpec
 
 class RailStationConverterTest extends WordSpec {
 
-  class Subject  {
+  class Subject {
     val railStationConverter: RailStationConverter.type = RailStationConverter
   }
 
@@ -32,8 +32,8 @@ class RailStationConverterTest extends WordSpec {
         val expectedRailStation = RailStation(
           id = "9100PENZNCE",
           stationName = "Penzance Rail Station",
-          latitude = 501216622978L,
-          longitude = -55326194274L
+          latitude = 50.1216622978D,
+          longitude = -5.5326194274D
         )
 
         assert(railStationConverter.toRailStation(rawRailStation) === expectedRailStation)
