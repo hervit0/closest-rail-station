@@ -9,8 +9,10 @@ object RailStationConverter {
     RailStation(
       id = rawRailStation.atcoCode,
       stationName = rawRailStation.stationName,
-      latitude = (rawRailStation.latitude * 1e10).toLong,
-      longitude = (rawRailStation.longitude * 1e10).toLong
+//      latitude = (rawRailStation.latitude * 1e10).toLong,
+//      longitude = (rawRailStation.longitude * 1e10).toLong
+      latitude = rawRailStation.latitude,
+      longitude = rawRailStation.longitude
     )
   }
 }
