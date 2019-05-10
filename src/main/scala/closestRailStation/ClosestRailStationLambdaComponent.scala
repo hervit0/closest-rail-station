@@ -1,15 +1,18 @@
 package closestRailStation
 
 import closestRailStation.dataParsing.models.RailStation
+import closestRailStation.dataParsing.persistence.RailStationRepositoryComponent
 import closestRailStation.dataParsing.services.RailStationExtractorImplementationComponent
 import closestRailStation.logging.ClosestRailStationLogging
 import closestRailStation.model.{ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse}
 import com.amazonaws.services.lambda.runtime.Context
+import com.gu.scanamo.error.DynamoReadError
 import io.github.mkotsur.aws.handler.Lambda
 
 trait ClosestRailStationLambdaComponent
     extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse]
     with RailStationExtractorImplementationComponent
+    with RailStationRepositoryComponent
     with ConfigProvider {
 
   def euclideanDistance(station: RailStation, latitude: Float, longitude: Float): Double =
@@ -23,7 +26,10 @@ trait ClosestRailStationLambdaComponent
     val latitude = request.queryStringParameters.latitude.toFloat
     val longitude = request.queryStringParameters.longitude.toFloat
 
-    val closestRailStation = railStationExtractor.extract.minBy(euclideanDistance(_, latitude, longitude)).stationName
+    val stations: List[Either[DynamoReadError, RailStation]] = railStationRepository.get
+    println(stations)
+//    val closestRailStation = railStationExtractor.extract.minBy(euclideanDistance(_, latitude, longitude)).stationName
+    val closestRailStation = "lol"
 
     Right(ClosestRailStationLambdaResponse.ok(isBase64Encoded = true, None, closestRailStation))
   }

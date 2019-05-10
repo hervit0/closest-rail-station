@@ -2,12 +2,10 @@ package closestRailStation.dataParsing
 
 import closestRailStation.ConfigProvider
 import closestRailStation.dataParsing.persistence.DynamoRailStationRepositoryComponent
-import closestRailStation.dataParsing.services.{
-  RailStationExtractorImplementationComponent,
-  RailStationLoaderImplementationComponent
-}
+import closestRailStation.dataParsing.services.{RailStationExtractorImplementationComponent, RailStationLoaderImplementationComponent}
 import closestRailStation.logging.ClosestRailStationLogging
 import com.amazonaws.ClientConfiguration
+import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration
 import com.amazonaws.regions.Regions
 import com.amazonaws.retry.PredefinedRetryPolicies
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
@@ -26,6 +24,7 @@ object SeedDatabaseTask
     AmazonDynamoDBClientBuilder
       .standard()
       .withRegion(Regions.US_EAST_1)
+//      .withEndpointConfiguration(new EndpointConfiguration("http://localhost:8000", "us-east-1"))
       .withClientConfiguration(
         new ClientConfiguration()
           .withRetryPolicy(PredefinedRetryPolicies.NO_RETRY_POLICY)
