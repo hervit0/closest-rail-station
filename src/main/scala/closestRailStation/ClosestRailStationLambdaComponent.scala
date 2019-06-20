@@ -27,7 +27,8 @@ trait ClosestRailStationLambdaComponent
     val longitude = request.queryStringParameters.longitude.toFloat
 
     val stations: List[Either[DynamoReadError, RailStation]] = railStationRepository.get
-    println(stations)
+    ClosestRailStationLogging.stations(stations)
+
 //    val closestRailStation = railStationExtractor.extract.minBy(euclideanDistance(_, latitude, longitude)).stationName
     val closestRailStation = "lol"
 

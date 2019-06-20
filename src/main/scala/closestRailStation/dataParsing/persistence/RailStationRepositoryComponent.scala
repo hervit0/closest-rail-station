@@ -3,8 +3,9 @@ package closestRailStation.dataParsing.persistence
 import closestRailStation.dataParsing.models.RailStation
 import closestRailStation.dataParsing.persistence.RailStationRepositoryExceptions.{DynamoException, RepositoryException}
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB
-import com.gu.scanamo.error.DynamoReadError
+import com.gu.scanamo.error.{DynamoReadError, MissingProperty}
 import com.gu.scanamo.{Scanamo, Table}
+import com.typesafe.scalalogging.LazyLogging
 
 trait RailStationRepositoryComponent {
 
@@ -19,6 +20,7 @@ trait RailStationRepositoryComponent {
 }
 
 trait DynamoRailStationRepositoryComponent extends RailStationRepositoryComponent {
+  self: LazyLogging =>
 
   val dynamoDB: AmazonDynamoDB
 
@@ -35,7 +37,7 @@ trait DynamoRailStationRepositoryComponent extends RailStationRepositoryComponen
         Right("saved!")
       } catch {
         case exception: Exception =>
-          Left(DynamoException(s"There was an error while saving the request: ${exception.getMessage}", exception))
+          Left(DynamoException(s"[Dynamo] Error save: ${exception.getMessage}", exception))
       }
     }
 
@@ -44,7 +46,13 @@ trait DynamoRailStationRepositoryComponent extends RailStationRepositoryComponen
         railStations <- railStationTable.scan()
       } yield railStations
 
-      Scanamo.exec(dynamoDB)(operations)
+      try {
+        Scanamo.exec(dynamoDB)(operations)
+      } catch {
+        case exception: Exception =>
+          logger.debug(exception.toString)
+          List(Left(MissingProperty))
+      }
     }
 
   }
