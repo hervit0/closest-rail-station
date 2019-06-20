@@ -18,6 +18,7 @@ trait RailStationLoaderImplementationComponent extends RailStationLoaderComponen
   class RailStationLoaderImplementation extends RailStationLoader {
     def load: Either[RepositoryException, String] = {
       val railStationsSet = railStationExtractor.extract.toSet
+//      railStationsSet.toList.foreach(x => println(s"RailStation(${'"'}${x.id}${'"'}, ${'"'}${x.stationName}${'"'}, ${x.latitude}D, ${x.longitude}D),"))
 
       val savingOperation = railStationRepository.save(railStationsSet)
       println(savingOperation)

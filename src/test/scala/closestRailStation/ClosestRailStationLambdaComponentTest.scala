@@ -75,8 +75,7 @@ class ClosestRailStationLambdaComponentTest extends WordSpec with EitherValues w
 
         val response = handle(request, context)
 
-        assert(response.right.value.body === "lol")
-//        assert(response.right.value.body === "Penzance Rail Station")
+        assert(response.right.value.body === "London Waterloo East Rail Station")
         assert(response.right.value.statusCode === 200)
       }
     }
