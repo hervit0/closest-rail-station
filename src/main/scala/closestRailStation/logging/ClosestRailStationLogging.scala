@@ -9,7 +9,7 @@ object ClosestRailStationLogging extends LazyLogging {
   def request(request: ClosestRailStationLambdaRequest): Unit =
     logger.info("Request received: {}", request)
 
-  def stations(request: List[Either[DynamoReadError, RailStation]] ): Unit =
+  def stations(request: List[Either[DynamoReadError, RailStation]]): Unit =
     logger.info("Stations: {}", request)
 
   def startSeedDatabase: Long = {
