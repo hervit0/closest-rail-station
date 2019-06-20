@@ -11,6 +11,7 @@ import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBu
 import com.gu.scanamo.syntax._
 import com.gu.scanamo.{LocalDynamoDB, Scanamo, Table}
 import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.{BeforeAndAfterEach, WordSpec}
 
 class RailStationLoaderComponentTest extends WordSpec with BeforeAndAfterEach {
@@ -56,6 +57,7 @@ class RailStationLoaderComponentTest extends WordSpec with BeforeAndAfterEach {
       extends RailStationLoaderImplementationComponent
       with RailStationExtractorImplementationComponent
       with DynamoRailStationRepositoryComponent
+      with LazyLogging
       with ConfigProvider {
     val railStationRepository: RailStationRepository = new DynamoRailStationRepository
 
