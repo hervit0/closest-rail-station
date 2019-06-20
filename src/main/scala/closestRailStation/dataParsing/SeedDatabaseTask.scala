@@ -12,12 +12,14 @@ import com.amazonaws.regions.Regions
 import com.amazonaws.retry.PredefinedRetryPolicies
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
 import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.scalalogging.LazyLogging
 
 object SeedDatabaseTask
     extends App
     with DynamoRailStationRepositoryComponent
     with RailStationExtractorImplementationComponent
     with RailStationLoaderImplementationComponent
+    with LazyLogging
     with ConfigProvider {
 
 //  US East (N. Virginia)	us-east-1
