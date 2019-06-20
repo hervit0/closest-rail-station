@@ -8,6 +8,7 @@ import com.amazonaws.regions.Regions
 import com.amazonaws.retry.PredefinedRetryPolicies
 import com.amazonaws.services.dynamodbv2.{AmazonDynamoDB, AmazonDynamoDBClientBuilder}
 import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.scalalogging.LazyLogging
 import io.github.mkotsur.aws.handler.Lambda
 import io.github.mkotsur.aws.handler.Lambda._
 
@@ -15,6 +16,7 @@ class ClosestRailStationLambda
     extends Lambda[ClosestRailStationLambdaRequest, ClosestRailStationLambdaResponse]
     with ClosestRailStationLambdaComponent
     with DynamoRailStationRepositoryComponent
+    with LazyLogging
     with RailStationExtractorImplementationComponent
     with ConfigProvider {
 
